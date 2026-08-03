@@ -54,3 +54,43 @@ add_action('woocommerce_after_single_product_summary', function (): void {
 add_action('woocommerce_after_single_product_summary', function (): void {
     get_template_part('template-parts/product/related-brand');
 }, 18);
+
+add_filter('woocommerce_checkout_fields', function (array $fields): array {
+    $priority = [
+        'billing_last_name'  => 10,
+        'billing_first_name' => 20,
+        'billing_postcode'   => 30,
+        'billing_state'      => 40,
+        'billing_city'       => 50,
+        'billing_address_1'  => 60,
+        'billing_address_2'  => 70,
+        'billing_phone'      => 80,
+        'billing_email'      => 90,
+    ];
+
+    foreach ($priority as $key => $value) {
+        if (isset($fields['billing'][$key])) {
+            $fields['billing'][$key]['priority'] = $value;
+        }
+    }
+
+    if (isset($fields['billing']['billing_company'])) {
+        $fields['billing']['billing_company']['required'] = false;
+        $fields['billing']['billing_company']['priority'] = 25;
+    }
+
+    if (isset($fields['order']['order_comments'])) {
+        $fields['order']['order_comments']['label'] = 'ご注文に関するご要望';
+        $fields['order']['order_comments']['placeholder'] = '配送希望、連絡方法、その他のご要望をご記入ください。';
+    }
+
+    return $fields;
+});
+
+add_action('woocommerce_before_checkout_form', function (): void {
+    get_template_part('template-parts/checkout/privacy-notice');
+}, 8);
+
+add_action('woocommerce_review_order_before_payment', function (): void {
+    get_template_part('template-parts/checkout/trust-panel');
+}, 5);

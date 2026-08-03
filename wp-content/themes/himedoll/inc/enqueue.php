@@ -26,6 +26,21 @@ add_action('wp_enqueue_scripts', function (): void {
             $version,
             true
         );
+    } elseif (is_cart() || is_checkout()) {
+        wp_enqueue_style(
+            'himedoll-checkout',
+            get_template_directory_uri() . '/assets/css/checkout.css',
+            ['himedoll-main'],
+            $version
+        );
+
+        wp_enqueue_script(
+            'himedoll-checkout',
+            get_template_directory_uri() . '/assets/js/checkout.js',
+            ['jquery'],
+            $version,
+            true
+        );
     } else {
         wp_enqueue_script(
             'himedoll-catalog',

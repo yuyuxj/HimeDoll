@@ -1,11 +1,11 @@
 # Changelog
 
-## 0.5.0
-- Added commercial product detail layout
-- Added product summary metadata
-- Added buy-now flow
-- Added mobile sticky purchase bar
-- Added product content tabs
-- Added delivery, warranty, package and care panels
-- Added same-brand related products
-- Added video URL and extended product fields
+## 0.6.0
+- Added custom cart layout
+- Added custom checkout layout
+- Added Japanese checkout field ordering
+- Added anonymous delivery notice
+- Added checkout trust panel
+- Added mobile sticky checkout action
+- Added empty cart state
+- Added order review styling
