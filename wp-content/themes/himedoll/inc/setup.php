@@ -10,19 +10,14 @@ function himedoll_setup(): void {
     add_theme_support('responsive-embeds');
     add_theme_support('align-wide');
     add_theme_support('custom-logo', [
-        'height'      => 80,
-        'width'       => 320,
+        'height' => 100,
+        'width' => 360,
         'flex-height' => true,
-        'flex-width'  => true,
+        'flex-width' => true,
     ]);
     add_theme_support('html5', [
-        'search-form',
-        'comment-form',
-        'comment-list',
-        'gallery',
-        'caption',
-        'style',
-        'script',
+        'search-form', 'comment-form', 'comment-list',
+        'gallery', 'caption', 'style', 'script',
     ]);
 
     register_nav_menus([
@@ -32,7 +27,14 @@ function himedoll_setup(): void {
 }
 add_action('after_setup_theme', 'himedoll_setup');
 
-function himedoll_content_width(): void {
-    $GLOBALS['content_width'] = apply_filters('himedoll_content_width', 1200);
+function himedoll_widgets_init(): void {
+    register_sidebar([
+        'name' => __('フッターウィジェット', 'himedoll'),
+        'id' => 'footer-widgets',
+        'before_widget' => '<section class="footer-widget">',
+        'after_widget' => '</section>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>',
+    ]);
 }
-add_action('after_setup_theme', 'himedoll_content_width', 0);
+add_action('widgets_init', 'himedoll_widgets_init');

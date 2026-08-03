@@ -23,28 +23,27 @@ final class HimeDoll_Core {
 
         register_taxonomy('product_brand', ['product'], [
             'labels' => [
-                'name'          => __('ブランド', 'himedoll-core'),
+                'name' => __('ブランド', 'himedoll-core'),
                 'singular_name' => __('ブランド', 'himedoll-core'),
-                'add_new_item'  => __('ブランドを追加', 'himedoll-core'),
-                'edit_item'     => __('ブランドを編集', 'himedoll-core'),
+                'add_new_item' => __('ブランドを追加', 'himedoll-core'),
+                'edit_item' => __('ブランドを編集', 'himedoll-core'),
+                'search_items' => __('ブランドを検索', 'himedoll-core'),
             ],
-            'public'            => true,
+            'public' => true,
             'show_admin_column' => true,
-            'show_in_rest'      => true,
-            'hierarchical'      => true,
-            'rewrite'           => ['slug' => 'brand'],
+            'show_in_rest' => true,
+            'hierarchical' => true,
+            'rewrite' => ['slug' => 'brand'],
         ]);
     }
 
     public function woocommerce_notice(): void {
-        if (!current_user_can('activate_plugins')) {
+        if (!current_user_can('activate_plugins') || class_exists('WooCommerce')) {
             return;
         }
 
-        if (!class_exists('WooCommerce')) {
-            echo '<div class="notice notice-warning"><p>';
-            echo esc_html__('HimeDoll Core requires WooCommerce for product features.', 'himedoll-core');
-            echo '</p></div>';
-        }
+        echo '<div class="notice notice-warning"><p>';
+        echo esc_html__('HimeDoll Core requires WooCommerce for product features.', 'himedoll-core');
+        echo '</p></div>';
     }
 }

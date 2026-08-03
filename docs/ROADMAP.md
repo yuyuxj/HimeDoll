@@ -1,19 +1,16 @@
 # HimeDoll Roadmap
 
-## v0.2.0
-Theme framework, header, footer, homepage shell.
+## v0.3.0 — Commercial Homepage
+Completed homepage, responsive navigation and product presentation.
 
-## v0.3.0
-Complete homepage design and product card system.
+## v0.4.0 — Catalog
+Product archive, brand archive, filtering and sorting.
 
-## v0.4.0
-Product archives, brand taxonomy, advanced filters.
+## v0.5.0 — Product Detail
+Product specifications, gallery, delivery information and related products.
 
-## v0.5.0
-Product detail page and custom product specifications.
+## v0.6.0 — Cart & Checkout
+Japanese checkout improvements and trust-focused conversion flow.
 
-## v0.6.0
-Cart, checkout and customer account improvements.
-
-## v1.0.0
-Production launch.
+## v1.0.0 — Production Launch
+SEO, performance, legal pages, analytics and production deployment.
