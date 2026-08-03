@@ -1,13 +1,11 @@
 wp-config.php
 wp-content/uploads/
 wp-content/cache/
-wp-content/upgrade/
-wp-content/backup*/
 *.log
 .env
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-node_modules/
 vendor/
+node_modules/
