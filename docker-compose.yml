@@ -1,0 +1,35 @@
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${WORDPRESS_DB_NAME:-himedoll}
+      MARIADB_USER: ${WORDPRESS_DB_USER:-himedoll}
+      MARIADB_PASSWORD: ${WORDPRESS_DB_PASSWORD:-change_me}
+      MARIADB_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD:-change_root_password}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "${WORDPRESS_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME:-himedoll}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER:-himedoll}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:-change_me}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_MEMORY_LIMIT', '256M');
+        define('DISALLOW_FILE_EDIT', true);
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content/themes/himedoll:/var/www/html/wp-content/themes/himedoll
+      - ./wp-content/plugins/himedoll-core:/var/www/html/wp-content/plugins/himedoll-core
+
+volumes:
+  db_data:
+  wordpress_data:

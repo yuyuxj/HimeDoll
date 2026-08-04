@@ -9,10 +9,10 @@ final class HimeDoll_Buy_Now {
     }
 
     private function __construct() {
-        add_filter('woocommerce_add_to_cart_redirect', [$this, 'redirect_to_checkout']);
+        add_filter('woocommerce_add_to_cart_redirect', [$this, 'redirect']);
     }
 
-    public function redirect_to_checkout(string $url): string {
+    public function redirect(string $url): string {
         if (
             isset($_REQUEST['hd_buy_now']) &&
             sanitize_text_field(wp_unslash($_REQUEST['hd_buy_now'])) === '1' &&

@@ -1,11 +1,27 @@
+# WordPress runtime
 wp-config.php
 wp-content/uploads/
 wp-content/cache/
+wp-content/upgrade/
+wp-content/backup*/
 *.log
+
+# Secrets
 .env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+vendor/
+
+# Editors / OS
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-vendor/
-node_modules/
+
+# Local database
+docker/mysql/
+*.sql
+*.sql.gz
