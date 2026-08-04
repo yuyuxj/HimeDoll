@@ -1,75 +1,12 @@
 <?php
 defined('ABSPATH') || exit;
-
 final class HimeDoll_Purchase_Orders {
-    private static ?self $instance = null;
-    public static function instance(): self { return self::$instance ??= new self(); }
-
-    private function __construct() {
-        add_action('init', [$this, 'register']);
-        add_action('add_meta_boxes', [$this, 'meta_boxes']);
-        add_action('save_post_hd_purchase_order', [$this, 'save']);
-    }
-
-    public function register(): void {
-        register_post_type('hd_purchase_order', [
-            'labels' => [
-                'name' => '采购单',
-                'singular_name' => '采购单',
-                'add_new_item' => '添加采购单',
-                'edit_item' => '编辑采购单',
-            ],
-            'public' => false,
-            'show_ui' => true,
-            'menu_icon' => 'dashicons-cart',
-            'supports' => ['title','editor','custom-fields'],
-        ]);
-    }
-
-    public function meta_boxes(): void {
-        add_meta_box('hd_po_data', '采购信息', [$this, 'render'], 'hd_purchase_order', 'normal');
-    }
-
-    public function render(WP_Post $post): void {
-        wp_nonce_field('hd_po_data', 'hd_po_nonce');
-        $fields = [
-            'hd_po_supplier' => '供应商',
-            'hd_po_external_no' => '外部采购单号',
-            'hd_po_product_name' => '商品名称',
-            'hd_po_quantity' => '数量',
-            'hd_po_unit_cost' => '单价',
-            'hd_po_currency' => '币种',
-            'hd_po_note' => '采购备注',
-            'hd_po_tracking_no' => '采购物流单号',
-            'hd_po_warehouse_note' => '仓库备注',
-            'hd_po_status' => '状态',
-            'hd_po_wc_order_id' => '匹配 WooCommerce 订单 ID',
-        ];
-        echo '<table class="form-table">';
-        foreach ($fields as $key => $label) {
-            $value = get_post_meta($post->ID, $key, true);
-            echo '<tr><th><label for="' . esc_attr($key) . '">' . esc_html($label) . '</label></th>';
-            echo '<td><input class="regular-text" id="' . esc_attr($key) . '" name="' . esc_attr($key) . '" value="' . esc_attr($value) . '"></td></tr>';
-        }
-        echo '</table>';
-    }
-
-    public function save(int $post_id): void {
-        if (!isset($_POST['hd_po_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['hd_po_nonce'])), 'hd_po_data')) return;
-        if (!current_user_can('edit_post', $post_id)) return;
-
-        $keys = [
-            'hd_po_supplier','hd_po_external_no','hd_po_product_name','hd_po_quantity',
-            'hd_po_unit_cost','hd_po_currency','hd_po_note','hd_po_tracking_no',
-            'hd_po_warehouse_note','hd_po_status','hd_po_wc_order_id'
-        ];
-
-        foreach ($keys as $key) {
-            if (isset($_POST[$key])) {
-                update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])));
-            }
-        }
-
-        HimeDoll_Order_Matcher::instance()->match_purchase_order($post_id);
-    }
+ private static ?self $instance=null; public static function instance(): self{return self::$instance??=new self();}
+ private function __construct(){add_action('init',[$this,'register']);add_action('add_meta_boxes',[$this,'meta_boxes']);add_action('save_post_hd_purchase_order',[$this,'save']);add_filter('manage_hd_purchase_order_posts_columns',[$this,'columns']);add_action('manage_hd_purchase_order_posts_custom_column',[$this,'column'],10,2);}
+ public function register():void{register_post_type('hd_purchase_order',['labels'=>['name'=>'采购单','singular_name'=>'采购单','add_new_item'=>'添加采购单','edit_item'=>'编辑采购单'],'public'=>false,'show_ui'=>true,'show_in_menu'=>'himedoll-settings','supports'=>['title','editor'],'map_meta_cap'=>true]);}
+ public function meta_boxes():void{add_meta_box('hd_po_data','采购与成本信息',[$this,'render'],'hd_purchase_order','normal');}
+ public function render(WP_Post $post):void{wp_nonce_field('hd_po_data','hd_po_nonce');$fields=['hd_po_supplier'=>'供应商 ID/名称','hd_po_external_no'=>'1688/外部采购单号','hd_po_product_id'=>'WooCommerce 商品 ID','hd_po_product_name'=>'商品名称','hd_po_quantity'=>'数量','hd_po_unit_cost'=>'采购单价','hd_po_currency'=>'币种','hd_po_domestic_freight'=>'中国境内运费','hd_po_international_freight'=>'国际运费','hd_po_customs_cost'=>'关税/清关费','hd_po_note'=>'采购备注（可包含乐天/WC订单号）','hd_po_tracking_no'=>'采购物流单号','hd_po_warehouse_note'=>'仓库备注','hd_po_status'=>'状态','hd_po_wc_order_id'=>'匹配 WooCommerce 订单 ID'];echo '<table class="form-table">';foreach($fields as $k=>$l){$v=get_post_meta($post->ID,$k,true);echo '<tr><th><label for="'.esc_attr($k).'">'.esc_html($l).'</label></th><td><input class="regular-text" id="'.esc_attr($k).'" name="'.esc_attr($k).'" value="'.esc_attr($v).'"></td></tr>';} $received=get_post_meta($post->ID,'hd_po_received_at',true);echo '<tr><th>入库状态</th><td>'.($received?esc_html($received):'未入库').'</td></tr></table>';}
+ public function save(int $id):void{if(!isset($_POST['hd_po_nonce'])||!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['hd_po_nonce'])),'hd_po_data')||!current_user_can('edit_post',$id))return;$numeric=['hd_po_product_id','hd_po_quantity','hd_po_unit_cost','hd_po_domestic_freight','hd_po_international_freight','hd_po_customs_cost','hd_po_wc_order_id'];$keys=['hd_po_supplier','hd_po_external_no','hd_po_product_name','hd_po_currency','hd_po_note','hd_po_tracking_no','hd_po_warehouse_note','hd_po_status',...$numeric];foreach($keys as $k){if(isset($_POST[$k])){ $v=wp_unslash($_POST[$k]); update_post_meta($id,$k,in_array($k,$numeric,true)?wc_format_decimal($v):sanitize_text_field($v));}}HimeDoll_Order_Matcher::instance()->match_purchase_order($id);}
+ public function columns(array $c):array{return ['cb'=>$c['cb'],'title'=>'采购单','supplier'=>'供应商','product'=>'商品','status'=>'状态','cost'=>'总成本','matched'=>'销售订单','date'=>$c['date']];}
+ public function column(string $col,int $id):void{if($col==='supplier')echo esc_html(get_post_meta($id,'hd_po_supplier',true));if($col==='product')echo esc_html(get_post_meta($id,'hd_po_product_name',true));if($col==='status')echo esc_html(get_post_meta($id,'hd_po_status',true));if($col==='matched')echo esc_html(get_post_meta($id,'hd_po_wc_order_id',true));if($col==='cost'){echo esc_html(wc_price(HimeDoll_Profit::instance()->purchase_total_cost($id)));}}
 }

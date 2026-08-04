@@ -1,6 +1,12 @@
 # Changelog
 
-## 7.0.0
+## 8.0.0
+- Added multi-warehouse inventory ledger and stock dashboard.
+- Added supplier profiles, purchase landed-cost fields and RMA workflow.
+- Added ERP schema installation and upgrade routine.
+- Expanded profit calculation and purchase-order administration.
+
+## 8.0.0
 - 新增 AI 完整商品包与批量运营中心
 - 新增标题、短描述、标签分类等 AI 任务
 - 新增 Product/FAQ/Breadcrumb Schema 和完整社交元数据

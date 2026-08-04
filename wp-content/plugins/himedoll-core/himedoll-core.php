@@ -2,7 +2,7 @@
 /**
  * Plugin Name: HimeDoll Core
  * Description: Japanese commerce, growth, AI and ERP operations for HimeDoll.
- * Version: 7.0.0
+ * Version: 8.0.0
  * Author: HimeDoll
  * Requires PHP: 8.0
  * Requires at least: 6.0
@@ -10,7 +10,7 @@
  */
 defined('ABSPATH') || exit;
 
-define('HIMEDOLL_CORE_VERSION', '7.0.0');
+define('HIMEDOLL_CORE_VERSION', '8.0.0');
 define('HIMEDOLL_CORE_FILE', __FILE__);
 define('HIMEDOLL_CORE_PATH', plugin_dir_path(__FILE__));
 define('HIMEDOLL_CORE_URL', plugin_dir_url(__FILE__));
@@ -38,6 +38,9 @@ $himedoll_core_files = [
     'includes/class-abandoned-checkout.php',
     'includes/class-review-requests.php',
     'includes/class-customer-segments.php',
+    'erp/class-erp-installer.php',
+    'erp/class-inventory.php',
+    'erp/class-rma.php',
     'erp/class-suppliers.php',
     'erp/class-purchase-orders.php',
     'erp/class-order-matcher.php',
@@ -70,6 +73,7 @@ $himedoll_admin_files = [
     'admin/class-order-export.php',
     'admin/class-logistics-export.php',
     'admin/class-erp-dashboard.php',
+    'admin/class-inventory-dashboard.php',
     'admin/class-purchase-importer.php',
     'admin/class-enterprise-settings.php',
     'admin/class-enterprise-dashboard.php',
@@ -90,7 +94,7 @@ function himedoll_core_boot(): void {
         'HimeDoll_Newsletter', 'HimeDoll_Restock', 'HimeDoll_Search_Analytics',
         'HimeDoll_Home_Banners', 'HimeDoll_Buying_Guides', 'HimeDoll_Campaigns',
         'HimeDoll_Email_Log', 'HimeDoll_Abandoned_Checkout', 'HimeDoll_Review_Requests',
-        'HimeDoll_Customer_Segments', 'HimeDoll_Suppliers', 'HimeDoll_Purchase_Orders',
+        'HimeDoll_Customer_Segments', 'HimeDoll_Inventory', 'HimeDoll_RMA', 'HimeDoll_Suppliers', 'HimeDoll_Purchase_Orders',
         'HimeDoll_AI_Product_Generator', 'HimeDoll_AI_Queue', 'HimeDoll_Loyalty',
         'HimeDoll_Membership', 'HimeDoll_Referral', 'HimeDoll_Enterprise_API',
         'HimeDoll_Order_Webhook',
@@ -103,7 +107,7 @@ function himedoll_core_boot(): void {
             'HimeDoll_Retention_Dashboard', 'HimeDoll_Setup_Wizard',
             'HimeDoll_System_Health', 'HimeDoll_AI_Settings', 'HimeDoll_AI_Product_Panel',
             'HimeDoll_Commerce_Intelligence', 'HimeDoll_Operations_Dashboard',
-            'HimeDoll_Order_Export', 'HimeDoll_Logistics_Export', 'HimeDoll_ERP_Dashboard',
+            'HimeDoll_Order_Export', 'HimeDoll_Logistics_Export', 'HimeDoll_ERP_Dashboard', 'HimeDoll_Inventory_Dashboard',
             'HimeDoll_Purchase_Importer', 'HimeDoll_Enterprise_Settings',
             'HimeDoll_Enterprise_Dashboard',
         ]);
@@ -118,6 +122,7 @@ function himedoll_core_boot(): void {
 add_action('plugins_loaded', 'himedoll_core_boot', 20);
 
 function himedoll_core_activate(): void {
+    if (class_exists('HimeDoll_ERP_Installer')) { HimeDoll_ERP_Installer::install(); }
     update_option('himedoll_core_version', HIMEDOLL_CORE_VERSION);
     update_option('himedoll_core_activated_at', current_time('mysql'));
     set_transient('himedoll_core_activation_redirect', 1, 60);
@@ -141,3 +146,5 @@ add_action('admin_notices', static function (): void {
     }
     echo '<div class="notice notice-warning"><p><strong>HimeDoll Core:</strong> 商品・注文機能を利用するには WooCommerce を有効化してください。</p></div>';
 });
+
+add_action('admin_init', static function (): void { if (get_option('himedoll_erp_db_version') !== '8.0.0' && class_exists('HimeDoll_ERP_Installer')) { HimeDoll_ERP_Installer::install(); } });

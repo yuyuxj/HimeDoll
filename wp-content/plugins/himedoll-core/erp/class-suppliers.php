@@ -1,26 +1,8 @@
 <?php
 defined('ABSPATH') || exit;
-
-final class HimeDoll_Suppliers {
-    private static ?self $instance = null;
-    public static function instance(): self { return self::$instance ??= new self(); }
-
-    private function __construct() {
-        add_action('init', [$this, 'register']);
-    }
-
-    public function register(): void {
-        register_post_type('hd_supplier', [
-            'labels' => [
-                'name' => '供应商',
-                'singular_name' => '供应商',
-                'add_new_item' => '添加供应商',
-                'edit_item' => '编辑供应商',
-            ],
-            'public' => false,
-            'show_ui' => true,
-            'menu_icon' => 'dashicons-businessperson',
-            'supports' => ['title','editor','custom-fields'],
-        ]);
-    }
+final class HimeDoll_Suppliers {private static ?self $instance=null;public static function instance():self{return self::$instance??=new self();}private function __construct(){add_action('init',[$this,'register']);add_action('add_meta_boxes',[$this,'boxes']);add_action('save_post_hd_supplier',[$this,'save']);}
+ public function register():void{register_post_type('hd_supplier',['labels'=>['name'=>'供应商','singular_name'=>'供应商','add_new_item'=>'添加供应商','edit_item'=>'编辑供应商'],'public'=>false,'show_ui'=>true,'show_in_menu'=>'himedoll-settings','supports'=>['title','editor'],'map_meta_cap'=>true]);}
+ public function boxes():void{add_meta_box('hd_supplier_data','供应商资料',[$this,'render'],'hd_supplier','normal');}
+ public function render(WP_Post $p):void{wp_nonce_field('hd_supplier_save','hd_supplier_nonce');$f=['hd_supplier_platform'=>'平台/品牌','hd_supplier_contact'=>'联系人','hd_supplier_wechat'=>'微信','hd_supplier_phone'=>'电话','hd_supplier_email'=>'Email','hd_supplier_url'=>'1688/官网链接','hd_supplier_payment'=>'付款方式','hd_supplier_lead_days'=>'交期（天）'];echo '<table class="form-table">';foreach($f as $k=>$l)echo '<tr><th>'.esc_html($l).'</th><td><input class="regular-text" name="'.esc_attr($k).'" value="'.esc_attr(get_post_meta($p->ID,$k,true)).'"></td></tr>';echo '</table>';}
+ public function save(int $id):void{if(!isset($_POST['hd_supplier_nonce'])||!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['hd_supplier_nonce'])),'hd_supplier_save')||!current_user_can('edit_post',$id))return;foreach(['hd_supplier_platform','hd_supplier_contact','hd_supplier_wechat','hd_supplier_phone','hd_supplier_email','hd_supplier_url','hd_supplier_payment','hd_supplier_lead_days'] as $k)if(isset($_POST[$k]))update_post_meta($id,$k,sanitize_text_field(wp_unslash($_POST[$k])));}
 }
