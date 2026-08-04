@@ -1,13 +1,15 @@
 # Changelog
 
-## 4.0.0
-- Added supplier management
-- Added purchase order management
-- Added purchase CSV import/export
-- Added order number extraction from procurement notes
-- Added WooCommerce order matching
-- Added logistics assignment
-- Added Junjia, Lindao and Shanghai export formats
-- Added tracking number and warehouse note fields
-- Added procurement cost and basic profit calculation
-- Added ERP dashboard and export logs
+## 5.0.0
+- Added loyalty points
+- Added membership tiers
+- Added referral codes and referral tracking
+- Added referral commission ledger
+- Added points redemption at checkout
+- Added VIP discount rules
+- Added PWA manifest and service worker
+- Added enterprise REST API
+- Added API key authentication
+- Added order webhook foundation
+- Added enterprise dashboard
+- Added configuration export

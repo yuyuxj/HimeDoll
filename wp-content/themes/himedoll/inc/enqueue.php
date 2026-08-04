@@ -4,12 +4,24 @@ defined('ABSPATH') || exit;
 add_action('wp_enqueue_scripts', function (): void {
     $version = wp_get_theme()->get('Version');
 
-    wp_enqueue_style('himedoll-main', get_template_directory_uri() . '/assets/css/main.css', [], $version);
-    wp_enqueue_style('himedoll-operations', get_template_directory_uri() . '/assets/css/operations.css', ['himedoll-main'], $version);
-    wp_enqueue_style('himedoll-marketing', get_template_directory_uri() . '/assets/css/marketing.css', ['himedoll-main'], $version);
-    wp_enqueue_style('himedoll-growth', get_template_directory_uri() . '/assets/css/growth.css', ['himedoll-main'], $version);
-    wp_enqueue_style('himedoll-intelligence', get_template_directory_uri() . '/assets/css/intelligence.css', ['himedoll-main'], $version);
-    wp_enqueue_style('himedoll-retention', get_template_directory_uri() . '/assets/css/retention.css', ['himedoll-main'], $version);
+    $styles = [
+        'himedoll-main' => 'main.css',
+        'himedoll-operations' => 'operations.css',
+        'himedoll-marketing' => 'marketing.css',
+        'himedoll-growth' => 'growth.css',
+        'himedoll-intelligence' => 'intelligence.css',
+        'himedoll-retention' => 'retention.css',
+        'himedoll-enterprise' => 'enterprise.css',
+    ];
+
+    foreach ($styles as $handle => $file) {
+        wp_enqueue_style(
+            $handle,
+            get_template_directory_uri() . '/assets/css/' . $file,
+            $handle === 'himedoll-main' ? [] : ['himedoll-main'],
+            $version
+        );
+    }
 
     wp_enqueue_script('himedoll-global', get_template_directory_uri() . '/assets/js/global.js', [], $version, true);
     wp_enqueue_script('himedoll-growth', get_template_directory_uri() . '/assets/js/growth.js', [], $version, true);

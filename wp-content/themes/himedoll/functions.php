@@ -12,3 +12,4 @@ require_once get_template_directory() . '/inc/marketing.php';
 require_once get_template_directory() . '/inc/growth.php';
 require_once get_template_directory() . '/inc/intelligence.php';
 require_once get_template_directory() . '/inc/retention.php';
+require_once get_template_directory() . '/inc/enterprise.php';
