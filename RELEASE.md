@@ -1,13 +1,9 @@
-# HimeDoll v9.0.0 Release
+# HimeDoll v10.0.0 Japan Operations
 
-## 新增
-- Body / Head / Accessory 可复用组件库
-- 商品兼容关系和默认组件
-- 前台组合选择器
-- SKU 模板自动生成
-- Product Intelligence 后台总览
+1. Back up WordPress files and database.
+2. Replace the theme and `himedoll-core` plugin files.
+3. Deactivate and reactivate HimeDoll Core once.
+4. Clear all page/object caches.
+5. Complete the checkout and shipment tracking tests in `docs/JAPAN_OPERATIONS.md`.
 
-## 验证
-- 全部 PHP 文件执行 `php -l`
-- 插件和主题版本统一为 9.0.0
-- 不删除 v8 数据表或旧商品字段
+Rollback: restore the v9 files and database backup. Order metadata added by v10 is harmless if the plugin is rolled back.

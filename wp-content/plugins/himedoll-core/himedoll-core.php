@@ -2,7 +2,7 @@
 /**
  * Plugin Name: HimeDoll Core
  * Description: Japanese commerce, growth, AI and ERP operations for HimeDoll.
- * Version: 9.0.0
+ * Version: 10.0.0
  * Author: HimeDoll
  * Requires PHP: 8.0
  * Requires at least: 6.0
@@ -10,7 +10,7 @@
  */
 defined('ABSPATH') || exit;
 
-define('HIMEDOLL_CORE_VERSION', '9.0.0');
+define('HIMEDOLL_CORE_VERSION', '10.0.0');
 define('HIMEDOLL_CORE_FILE', __FILE__);
 define('HIMEDOLL_CORE_PATH', plugin_dir_path(__FILE__));
 define('HIMEDOLL_CORE_URL', plugin_dir_url(__FILE__));
@@ -49,6 +49,8 @@ $himedoll_core_files = [
     'product-intelligence/class-components.php',
     'product-intelligence/class-configurator.php',
     'product-intelligence/class-sku-generator.php',
+    'japan-operations/class-checkout-privacy.php',
+    'japan-operations/class-shipment-tracking.php',
     'ai/class-ai-client.php',
     'ai/class-ai-logger.php',
     'ai/class-ai-product-generator.php',
@@ -81,6 +83,7 @@ $himedoll_admin_files = [
     'admin/class-enterprise-settings.php',
     'admin/class-enterprise-dashboard.php',
     'admin/class-product-intelligence-dashboard.php',
+    'admin/class-japan-operations-dashboard.php',
 ];
 
 foreach (array_merge($himedoll_core_files, is_admin() ? $himedoll_admin_files : []) as $himedoll_file) {
@@ -101,6 +104,7 @@ function himedoll_core_boot(): void {
         'HimeDoll_Customer_Segments', 'HimeDoll_Inventory', 'HimeDoll_RMA', 'HimeDoll_Suppliers', 'HimeDoll_Purchase_Orders',
         'HimeDoll_AI_Product_Generator', 'HimeDoll_AI_Queue', 'HimeDoll_Loyalty',
         'HimeDoll_Product_Components', 'HimeDoll_Product_Configurator', 'HimeDoll_SKU_Generator',
+        'HimeDoll_Checkout_Privacy', 'HimeDoll_Shipment_Tracking',
         'HimeDoll_Membership', 'HimeDoll_Referral', 'HimeDoll_Enterprise_API',
         'HimeDoll_Order_Webhook',
     ];
@@ -115,6 +119,7 @@ function himedoll_core_boot(): void {
             'HimeDoll_Order_Export', 'HimeDoll_Logistics_Export', 'HimeDoll_ERP_Dashboard', 'HimeDoll_Inventory_Dashboard',
             'HimeDoll_Purchase_Importer', 'HimeDoll_Enterprise_Settings',
             'HimeDoll_Enterprise_Dashboard', 'HimeDoll_Product_Intelligence_Dashboard',
+            'HimeDoll_Japan_Operations_Dashboard',
         ]);
     }
 

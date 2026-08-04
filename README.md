@@ -1,24 +1,23 @@
-# HimeDoll v9.0.0 Product Intelligence
+# HimeDoll v10.0.0 Japan Operations
 
-日本向け WooCommerce 商城、AI运营、ERP 与可组合商品数据系统。
+HimeDoll is a modular WordPress/WooCommerce commerce platform for the Japanese market.
 
-## v9.0 Product Intelligence
+## v10 highlights
 
-- 独立管理 Body、Head、Accessory 组件
-- 组件管理代码、厂家、材质、尺寸、重量、罩杯、肤色、成本与交期
-- 商品绑定默认 Body / Head
-- 设置兼容 Body、兼容 Head 与推荐配件
-- 商品页显示组合选择器
-- SKU 模板及保存时自动生成
-- Product Intelligence 后台总览
-- 保持 v8 ERP、v7 AI SEO、会员、营销和企业接口兼容
+- Mandatory 18+ confirmation during checkout
+- Discreet/plain packaging preference stored per order
+- Preferred delivery date and Japanese delivery time-slot fields
+- Carrier and tracking-number management inside WooCommerce orders
+- Tracking links for Yamato, Sagawa, Japan Post/EMS, DHL, FedEx and UPS
+- Customer-facing order tracking display and `[himedoll_tracking]` shortcode
+- Customer order-note notification when a new tracking number is registered
+- Japan Operations dashboard for fulfilment status
+- Full compatibility with v9 Product Intelligence, v8 ERP and v7 AI Commerce
 
-## 推荐升级步骤
+## Requirements
 
-1. 备份数据库和 `wp-content`。
-2. 覆盖主题与 `himedoll-core` 插件文件。
-3. 停用后重新启用 HimeDoll Core，或进入一次后台触发升级。
-4. 在 **Product Intelligence** 中先建立 Body 与 Head。
-5. 编辑一个测试商品，绑定组件并验证前台组合器。
+- WordPress 6.0+
+- PHP 8.0+
+- WooCommerce
 
-正式销售中的价格差异仍建议使用 WooCommerce Variable Product 管理；v9 的组件层用于复用规格、建立兼容关系和统一 SKU。
+See `docs/JAPAN_OPERATIONS.md` for deployment and testing.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 10.0.0 - Japan Operations
+
+- Added mandatory 18+ checkout confirmation.
+- Added discreet packaging and Japanese delivery preference fields.
+- Added multi-carrier shipment tracking to WooCommerce orders.
+- Added customer tracking links, order notes and tracking shortcode.
+- Added Japan Operations dashboard and deployment documentation.
+
+
 ## 9.0.0
 - Added reusable Body, Head and Accessory component post types.
 - Added product compatibility metadata and storefront configurator.
