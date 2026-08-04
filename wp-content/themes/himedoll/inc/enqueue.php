@@ -7,8 +7,10 @@ add_action('wp_enqueue_scripts', function (): void {
     wp_enqueue_style('himedoll-main', get_template_directory_uri() . '/assets/css/main.css', [], $version);
     wp_enqueue_style('himedoll-operations', get_template_directory_uri() . '/assets/css/operations.css', ['himedoll-main'], $version);
     wp_enqueue_style('himedoll-marketing', get_template_directory_uri() . '/assets/css/marketing.css', ['himedoll-main'], $version);
+    wp_enqueue_style('himedoll-growth', get_template_directory_uri() . '/assets/css/growth.css', ['himedoll-main'], $version);
 
     wp_enqueue_script('himedoll-global', get_template_directory_uri() . '/assets/js/global.js', [], $version, true);
+    wp_enqueue_script('himedoll-growth', get_template_directory_uri() . '/assets/js/growth.js', [], $version, true);
 
     if (is_product()) {
         wp_enqueue_style('himedoll-product-detail', get_template_directory_uri() . '/assets/css/product-detail.css', ['himedoll-main'], $version);

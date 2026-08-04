@@ -1,13 +1,11 @@
 # Changelog
 
-## 1.5.0
-- Added product CSV importer
-- Added automatic brand creation
-- Added remote image sideload
-- Added bulk product metadata updates
-- Added SEO template generator
-- Added operations dashboard
-- Added low-stock and missing-content reports
-- Added order CSV export
-- Added import logs
-- Added example CSV template
+## 1.8.0
+- Added homepage banner CPT
+- Added homepage CMS blocks
+- Added GA4/GTM settings and output
+- Added product comparison feature
+- Added back-in-stock subscriptions
+- Added back-in-stock CSV export
+- Added promotion countdown
+- Added homepage shortcodes
