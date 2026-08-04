@@ -2,7 +2,7 @@
 /**
  * Plugin Name: HimeDoll Core
  * Description: Japanese commerce, growth, AI and ERP operations for HimeDoll.
- * Version: 6.0.0
+ * Version: 7.0.0
  * Author: HimeDoll
  * Requires PHP: 8.0
  * Requires at least: 6.0
@@ -10,7 +10,7 @@
  */
 defined('ABSPATH') || exit;
 
-define('HIMEDOLL_CORE_VERSION', '6.0.0');
+define('HIMEDOLL_CORE_VERSION', '7.0.0');
 define('HIMEDOLL_CORE_FILE', __FILE__);
 define('HIMEDOLL_CORE_PATH', plugin_dir_path(__FILE__));
 define('HIMEDOLL_CORE_URL', plugin_dir_url(__FILE__));
@@ -23,6 +23,8 @@ $himedoll_core_files = [
     'includes/class-himedoll-core.php',
     'includes/class-security.php',
     'includes/class-catalog-filter.php',
+    'includes/class-product-recommendations.php',
+    'includes/class-product-seo.php',
     'includes/class-wishlist.php',
     'includes/class-recent-products.php',
     'includes/class-buy-now.php',
@@ -83,6 +85,7 @@ foreach (array_merge($himedoll_core_files, is_admin() ? $himedoll_admin_files : 
 function himedoll_core_boot(): void {
     $classes = [
         'HimeDoll_Core', 'HimeDoll_Security', 'HimeDoll_Catalog_Filter',
+        'HimeDoll_Product_Recommendations', 'HimeDoll_Product_SEO',
         'HimeDoll_Wishlist', 'HimeDoll_Recent_Products', 'HimeDoll_Buy_Now',
         'HimeDoll_Newsletter', 'HimeDoll_Restock', 'HimeDoll_Search_Analytics',
         'HimeDoll_Home_Banners', 'HimeDoll_Buying_Guides', 'HimeDoll_Campaigns',

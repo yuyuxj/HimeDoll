@@ -1,31 +1,16 @@
-# HimeDoll v6.0.0 Enterprise Commerce
+# HimeDoll v7.0.0 AI Commerce
 
-基于 v4.0.0 的大型增量升级包。
+日本向け WooCommerce 商城的 AI 商品运营、自动 SEO 与智能推荐版本。
 
-## 本次新增
-- 会员积分
-- 会员等级
-- 推荐返佣基础
-- 推荐码与推荐链接
-- 积分流水
-- 下单奖励积分
-- 积分抵扣
-- VIP 折扣
-- 多货币显示基础
-- PWA Manifest
-- Service Worker 基础缓存
-- Web App 安装入口
-- REST API 企业接口
-- API Key 鉴权
-- 订单状态 Webhook 基础
-- 企业后台总览
-- 系统配置导出
-- 数据隐私导出辅助
-- 用户账户新增积分与推荐页面
+## v7.0 主要功能
 
+- AI 完整商品包：标题、短描述、详细描述、SEO、FAQ、ALT、标签一次生成
+- AI 运营中心批量任务，可按缺失内容、最新商品或全部商品入队
+- 商品编辑页与商品列表批量 AI 操作
+- 稳健 JSON 解析，兼容 Markdown 代码块返回
+- Product、Offer、AggregateRating、FAQ、Breadcrumb JSON-LD
+- Canonical、Open Graph、Twitter Card
+- 基于品牌、分类、规格、价格和评分的智能商品推荐
+- 继续兼容 v6 日本商城筛选、ERP、会员、营销和企业接口
 
-## HimeDoll 6.0
-
-上线稳定版已启用完整模块加载器，并新增日本商品筛选体系：品牌、材质、身高、罩杯、骨格、自立、加热、头部可更换、AI、即纳/预售/Outlet、库存和价格。后台商品编辑同步新增这些标准字段。
-
-升级后请在 WordPress 后台停用并重新启用 `HimeDoll Core`，然后打开 **HimeDoll → セットアップ** 完成页面检查。
+部署前请先备份数据库与 wp-content，并在测试环境验证 AI API 配置。

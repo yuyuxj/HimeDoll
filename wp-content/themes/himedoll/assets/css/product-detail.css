@@ -52,3 +52,7 @@
   .product-tabs{gap:20px}
   .product-tabs button{font-size:13px}
 }
+
+
+/* v7 AI recommendations */
+.hd-ai-recommendations{margin:64px auto 24px;clear:both}.hd-ai-recommendations .hd-section-heading{text-align:center;max-width:720px;margin:0 auto 28px}.hd-ai-recommendations .hd-eyebrow{font-size:12px;letter-spacing:.16em;font-weight:700;opacity:.65}.hd-ai-recommendations ul.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.hd-ai-recommendations ul.products:before,.hd-ai-recommendations ul.products:after{display:none}.hd-ai-recommendations ul.products li.product{width:auto!important;margin:0!important}@media(max-width:900px){.hd-ai-recommendations ul.products{grid-template-columns:repeat(2,minmax(0,1fr))}}

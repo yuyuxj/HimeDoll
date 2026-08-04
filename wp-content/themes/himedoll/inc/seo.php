@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
+if (!class_exists('HimeDoll_Product_SEO')) {
 add_filter('pre_get_document_title', function (string $title): string {
     if (is_singular('product')) {
         $custom = get_post_meta(get_queried_object_id(), 'hd_seo_title', true);
@@ -37,6 +38,8 @@ add_action('wp_head', function (): void {
 ";
     }
 }, 5);
+
+}
 
 add_action('wp_head', function (): void {
     $org = [

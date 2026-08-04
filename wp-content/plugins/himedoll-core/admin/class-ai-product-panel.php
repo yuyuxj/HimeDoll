@@ -30,10 +30,14 @@ final class HimeDoll_AI_Product_Panel {
         wp_nonce_field('himedoll_ai_product_action', 'himedoll_ai_nonce');
 
         foreach ([
+            'package' => '生成完整商品包',
+            'title' => '生成商品标题',
+            'short_description' => '生成短描述',
             'description' => '生成商品描述',
             'seo' => '生成 SEO',
             'faq' => '生成 FAQ',
             'alt' => '生成主图 ALT',
+            'catalog' => '生成标签与分类',
         ] as $task => $label) {
             $url = wp_nonce_url(
                 add_query_arg([
@@ -64,7 +68,7 @@ final class HimeDoll_AI_Product_Panel {
         $product_id = absint($_GET['product_id'] ?? 0);
         $task = sanitize_key($_GET['task'] ?? '');
 
-        if (!$product_id || !in_array($task, ['description','seo','faq','alt'], true)) {
+        if (!$product_id || !in_array($task, ['package','title','short_description','description','seo','faq','alt','catalog'], true)) {
             wp_die('Invalid AI task.');
         }
 
@@ -75,19 +79,27 @@ final class HimeDoll_AI_Product_Panel {
     }
 
     public function bulk_actions(array $actions): array {
+        $actions['hd_ai_package'] = 'AI：生成完整商品包';
+        $actions['hd_ai_title'] = 'AI：生成商品标题';
+        $actions['hd_ai_short_description'] = 'AI：生成短描述';
         $actions['hd_ai_description'] = 'AI：生成商品描述';
         $actions['hd_ai_seo'] = 'AI：生成 SEO';
         $actions['hd_ai_faq'] = 'AI：生成 FAQ';
         $actions['hd_ai_alt'] = 'AI：生成主图 ALT';
+        $actions['hd_ai_catalog'] = 'AI：生成标签与分类';
         return $actions;
     }
 
     public function handle_bulk(string $redirect, string $action, array $post_ids): string {
         $map = [
+            'hd_ai_package' => 'package',
+            'hd_ai_title' => 'title',
+            'hd_ai_short_description' => 'short_description',
             'hd_ai_description' => 'description',
             'hd_ai_seo' => 'seo',
             'hd_ai_faq' => 'faq',
             'hd_ai_alt' => 'alt',
+            'hd_ai_catalog' => 'catalog',
         ];
 
         if (!isset($map[$action])) {

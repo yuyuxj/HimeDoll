@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.0.0
+- 新增 AI 完整商品包与批量运营中心
+- 新增标题、短描述、标签分类等 AI 任务
+- 新增 Product/FAQ/Breadcrumb Schema 和完整社交元数据
+- 新增智能商品推荐模块
+- 改进 JSON 解析、内容清洗、生成记录和错误处理
+
 ## 6.0.0
 - 修复核心问题：此前入口仅加载 Enterprise 模块，现已加载 Commerce、Marketing、Growth、AI、ERP 与后台管理模块。
 - 加入激活流程、版本记录、设置向导跳转及 WooCommerce 依赖提醒。
