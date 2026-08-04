@@ -1,0 +1,39 @@
+.modal-open{overflow:hidden}
+.age-gate{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.78)}
+.age-gate__panel{width:min(520px,100%);padding:42px;background:#fff;border-radius:22px;text-align:center}
+.age-gate__panel h2{margin:0;font:42px Georgia,serif}
+.age-gate__panel p{color:var(--muted)}
+.age-gate__actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.age-gate__actions button,.age-gate__actions a{min-height:48px;display:grid;place-items:center;border-radius:999px;font-weight:800}
+.age-gate__actions button{border:0;background:#111;color:#fff}
+.age-gate__actions a{border:1px solid var(--border)}
+.cookie-bar{position:fixed;left:20px;right:20px;bottom:20px;z-index:9998;display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1000px;margin:auto;padding:18px 22px;background:#111;color:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.cookie-bar p{margin:0;font-size:13px}
+.cookie-bar div{display:flex;align-items:center;gap:14px;white-space:nowrap}
+.cookie-bar button{min-height:38px;padding:0 18px;border:0;border-radius:999px;background:#fff;font-weight:800}
+.cookie-bar a{font-size:12px;text-decoration:underline}
+.account-dashboard{padding:20px 0 80px}
+.account-dashboard__hero{padding:45px;background:linear-gradient(135deg,#f8f3ed,#e7d8c8);border-radius:22px}
+.account-dashboard__hero h1{margin:0;font:48px Georgia,serif}
+.account-dashboard__hero p:last-child{color:var(--muted)}
+.account-dashboard__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:28px 0 60px}
+.account-card{padding:25px;border:1px solid var(--border);border-radius:18px;transition:.2s}
+.account-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.account-card span{color:var(--accent);font:26px Georgia,serif}
+.account-card h2{margin:16px 0 6px;font-size:18px}
+.account-card p{margin:0;color:var(--muted);font-size:13px}
+.account-recent{padding-top:20px}
+.wishlist-page{padding:70px 0 90px}
+.wishlist-page h1{font:56px Georgia,serif}
+.wishlist-empty{padding:60px 20px;background:var(--soft);border-radius:20px;text-align:center}
+@media(max-width:900px){
+  .account-dashboard__grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .age-gate__actions{grid-template-columns:1fr}
+  .cookie-bar{display:block}
+  .cookie-bar div{margin-top:12px}
+  .account-dashboard__hero{padding:28px 22px}
+  .account-dashboard__hero h1{font-size:36px}
+  .account-dashboard__grid{grid-template-columns:1fr}
+}
