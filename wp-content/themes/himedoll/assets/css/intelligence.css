@@ -1,0 +1,9 @@
+.hd-campaigns{padding:90px 0;background:var(--soft)}
+.hd-campaigns__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.hd-campaign-card{overflow:hidden;background:#fff;border-radius:20px;border:1px solid var(--border)}
+.hd-campaign-card img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.hd-campaign-card__body{padding:22px}
+.hd-campaign-card h3{margin:0 0 8px;font:28px Georgia,serif}
+.hd-coupon-copy{width:100%;margin-top:14px;padding:12px;border:1px dashed var(--accent);border-radius:12px;background:#fff;font-weight:800}
+.hd-campaign-deadline{margin-top:12px;color:var(--muted);font-size:13px}
+@media(max-width:900px){.hd-campaigns__grid{grid-template-columns:1fr}}
