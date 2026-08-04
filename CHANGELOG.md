@@ -1,13 +1,14 @@
 # Changelog
 
-## 2.0.0
-- Added automatic restock notification emails
-- Added review request emails after completed orders
-- Added campaign manager
-- Added coupon campaign shortcode
-- Added commerce intelligence dashboard
-- Added revenue, AOV and order status summaries
-- Added best seller reporting
-- Added system health page
-- Added cron status and email logs
-- Added robots.txt and sitemap enhancements
+## 2.5.0
+- Added buying guide content type
+- Added product-to-guide relations
+- Added internal linking module
+- Added search suggestion endpoint
+- Added search query analytics
+- Added abandoned checkout recovery
+- Added signed cart recovery links
+- Added customer segmentation
+- Added repeat customer reporting
+- Added retention analytics
+- Added content performance reporting

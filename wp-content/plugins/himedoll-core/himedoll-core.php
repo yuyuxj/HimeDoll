@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: HimeDoll Core
- * Version: 2.0.0
+ * Version: 2.5.0
  */
 defined('ABSPATH') || exit;
 
-define('HIMEDOLL_CORE_VERSION', '2.0.0');
+define('HIMEDOLL_CORE_VERSION', '2.5.0');
 define('HIMEDOLL_CORE_PATH', plugin_dir_path(__FILE__));
 
 require_once HIMEDOLL_CORE_PATH . 'includes/class-himedoll-core.php';
@@ -20,6 +20,10 @@ require_once HIMEDOLL_CORE_PATH . 'includes/class-home-banners.php';
 require_once HIMEDOLL_CORE_PATH . 'includes/class-campaigns.php';
 require_once HIMEDOLL_CORE_PATH . 'includes/class-review-requests.php';
 require_once HIMEDOLL_CORE_PATH . 'includes/class-email-log.php';
+require_once HIMEDOLL_CORE_PATH . 'includes/class-buying-guides.php';
+require_once HIMEDOLL_CORE_PATH . 'includes/class-search-analytics.php';
+require_once HIMEDOLL_CORE_PATH . 'includes/class-abandoned-checkout.php';
+require_once HIMEDOLL_CORE_PATH . 'includes/class-customer-segments.php';
 require_once HIMEDOLL_CORE_PATH . 'admin/class-product-fields.php';
 require_once HIMEDOLL_CORE_PATH . 'admin/class-settings.php';
 require_once HIMEDOLL_CORE_PATH . 'admin/class-setup-wizard.php';
@@ -30,6 +34,7 @@ require_once HIMEDOLL_CORE_PATH . 'admin/class-operations-dashboard.php';
 require_once HIMEDOLL_CORE_PATH . 'admin/class-order-export.php';
 require_once HIMEDOLL_CORE_PATH . 'admin/class-commerce-intelligence.php';
 require_once HIMEDOLL_CORE_PATH . 'admin/class-system-health.php';
+require_once HIMEDOLL_CORE_PATH . 'admin/class-retention-dashboard.php';
 
 add_action('plugins_loaded', static function (): void {
     HimeDoll_Core::instance();
@@ -44,6 +49,10 @@ add_action('plugins_loaded', static function (): void {
     HimeDoll_Campaigns::instance();
     HimeDoll_Review_Requests::instance();
     HimeDoll_Email_Log::instance();
+    HimeDoll_Buying_Guides::instance();
+    HimeDoll_Search_Analytics::instance();
+    HimeDoll_Abandoned_Checkout::instance();
+    HimeDoll_Customer_Segments::instance();
 
     if (is_admin()) {
         HimeDoll_Settings::instance();
@@ -55,6 +64,7 @@ add_action('plugins_loaded', static function (): void {
         HimeDoll_Order_Export::instance();
         HimeDoll_Commerce_Intelligence::instance();
         HimeDoll_System_Health::instance();
+        HimeDoll_Retention_Dashboard::instance();
 
         if (class_exists('WooCommerce')) {
             HimeDoll_Product_Fields::instance();
