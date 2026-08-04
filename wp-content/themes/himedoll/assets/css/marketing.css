@@ -1,0 +1,15 @@
+.hd-contact-float{position:fixed;right:18px;bottom:86px;z-index:80;display:grid;gap:9px}
+.hd-contact-float a{min-width:118px;padding:12px 16px;border-radius:999px;color:#fff;text-align:center;font-size:13px;font-weight:800;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.hd-contact-float__line{background:#06c755}
+.hd-contact-float__mail{background:#111}
+.hd-promotion-bar{padding:10px 0;background:#a77b43;color:#fff;text-align:center;font-size:13px;font-weight:800}
+.product-inquiry-link{display:block;margin-top:12px;text-align:center;text-decoration:underline;font-size:13px}
+.hd-review-summary{display:flex;align-items:center;gap:16px;margin:15px 0;padding:14px;background:var(--soft);border-radius:14px}
+.hd-review-summary__score strong{font:36px Georgia,serif}
+.hd-review-summary__score span,.hd-review-summary p{color:var(--muted);font-size:12px}
+.verified-purchase{display:inline-block;margin-right:8px;padding:3px 8px;border-radius:999px;background:#edf6ef;color:#32774b;font-size:11px;font-weight:800}
+.hd-thankyou{margin:25px 0;padding:28px;background:linear-gradient(135deg,#f7f3ee,#eadccd);border-radius:18px}
+.hd-thankyou h2{margin:0;font:34px Georgia,serif}
+.hd-thankyou__links{display:flex;gap:16px;margin-top:18px}
+.hd-thankyou__links a{text-decoration:underline;font-weight:700}
+@media(max-width:600px){.hd-contact-float{right:12px;bottom:78px}.hd-contact-float a{min-width:98px;padding:10px 13px}.hd-thankyou__links{display:grid}}

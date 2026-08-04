@@ -8,3 +8,4 @@ require_once get_template_directory() . '/inc/woocommerce.php';
 require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/privacy.php';
 require_once get_template_directory() . '/inc/performance.php';
+require_once get_template_directory() . '/inc/marketing.php';

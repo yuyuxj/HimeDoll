@@ -12,16 +12,11 @@ add_filter('pre_get_document_title', function (string $title): string {
 });
 
 add_action('wp_head', function (): void {
-    if (!is_singular()) {
-        return;
-    }
+    if (!is_singular()) return;
 
     $post_id = get_queried_object_id();
     $description = get_post_meta($post_id, 'hd_seo_description', true);
-
-    if (!$description) {
-        $description = wp_strip_all_tags(get_the_excerpt($post_id));
-    }
+    if (!$description) $description = wp_strip_all_tags(get_the_excerpt($post_id));
 
     if ($description) {
         echo '<meta name="description" content="' . esc_attr(wp_trim_words($description, 32, '')) . '">' . "
@@ -44,40 +39,39 @@ add_action('wp_head', function (): void {
 }, 5);
 
 add_action('wp_head', function (): void {
-    if (!is_singular('product') || !function_exists('wc_get_product')) {
-        return;
-    }
-
-    $product = wc_get_product(get_queried_object_id());
-    if (!$product) {
-        return;
-    }
-
-    $schema = [
+    $org = [
         '@context' => 'https://schema.org',
-        '@type' => 'Product',
-        'name' => $product->get_name(),
-        'sku' => $product->get_sku(),
-        'url' => get_permalink($product->get_id()),
-        'description' => wp_strip_all_tags($product->get_short_description() ?: $product->get_description()),
-        'offers' => [
-            '@type' => 'Offer',
-            'priceCurrency' => get_woocommerce_currency(),
-            'price' => $product->get_price(),
-            'availability' => $product->is_in_stock()
-                ? 'https://schema.org/InStock'
-                : 'https://schema.org/OutOfStock',
-            'url' => get_permalink($product->get_id()),
+        '@type' => 'Organization',
+        'name' => get_bloginfo('name'),
+        'url' => home_url('/'),
+        'email' => sanitize_email((string) get_option('hd_support_email')),
+    ];
+
+    $line = trim((string) get_option('hd_line_url'));
+    if ($line) $org['sameAs'] = [$line];
+
+    echo '<script type="application/ld+json">' . wp_json_encode($org, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>';
+}, 20);
+
+add_action('wp_head', function (): void {
+    if (!is_page('faq')) return;
+
+    $faq = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => [
+            [
+                '@type' => 'Question',
+                'name' => '梱包から商品内容が分かりますか？',
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => '商品内容が分からないよう配慮して発送します。'],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => '購入前に相談できますか？',
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'LINEまたはメールでご相談いただけます。'],
+            ],
         ],
     ];
 
-    $brand = himedoll_product_brand($product->get_id());
-    if ($brand) {
-        $schema['brand'] = ['@type' => 'Brand', 'name' => $brand->name];
-    }
-
-    echo '<script type="application/ld+json">' .
-        wp_json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) .
-        '</script>' . "
-";
-}, 30);
+    echo '<script type="application/ld+json">' . wp_json_encode($faq, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>';
+}, 25);
