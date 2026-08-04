@@ -1,89 +1,120 @@
 <?php
 /**
  * Plugin Name: HimeDoll Core
- * Description: Core commerce, operations and AI automation for HimeDoll.
- * Version: 3.0.0
- * Author: HimeDoll
- * Text Domain: himedoll-core
+ * Version: 4.0.0
  */
 defined('ABSPATH') || exit;
 
-define('HIMEDOLL_CORE_VERSION', '3.0.0');
+define('HIMEDOLL_CORE_VERSION', '4.0.0');
 define('HIMEDOLL_CORE_PATH', plugin_dir_path(__FILE__));
 
-require_once HIMEDOLL_CORE_PATH . 'includes/class-himedoll-core.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-catalog-filter.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-recent-products.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-wishlist.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-buy-now.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-security.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-newsletter.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-restock.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-home-banners.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-campaigns.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-review-requests.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-email-log.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-buying-guides.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-search-analytics.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-abandoned-checkout.php';
-require_once HIMEDOLL_CORE_PATH . 'includes/class-customer-segments.php';
+$files = [
+    'includes/class-himedoll-core.php',
+    'includes/class-catalog-filter.php',
+    'includes/class-recent-products.php',
+    'includes/class-wishlist.php',
+    'includes/class-buy-now.php',
+    'includes/class-security.php',
+    'includes/class-newsletter.php',
+    'includes/class-restock.php',
+    'includes/class-home-banners.php',
+    'includes/class-campaigns.php',
+    'includes/class-review-requests.php',
+    'includes/class-email-log.php',
+    'includes/class-buying-guides.php',
+    'includes/class-search-analytics.php',
+    'includes/class-abandoned-checkout.php',
+    'includes/class-customer-segments.php',
+    'ai/class-ai-client.php',
+    'ai/class-ai-queue.php',
+    'ai/class-ai-product-generator.php',
+    'ai/class-ai-logger.php',
+    'erp/class-suppliers.php',
+    'erp/class-purchase-orders.php',
+    'erp/class-order-matcher.php',
+    'erp/class-logistics.php',
+    'erp/class-profit.php',
+    'admin/class-product-fields.php',
+    'admin/class-settings.php',
+    'admin/class-setup-wizard.php',
+    'admin/class-marketing-settings.php',
+    'admin/class-growth-settings.php',
+    'admin/class-product-importer.php',
+    'admin/class-operations-dashboard.php',
+    'admin/class-order-export.php',
+    'admin/class-commerce-intelligence.php',
+    'admin/class-system-health.php',
+    'admin/class-retention-dashboard.php',
+    'admin/class-ai-settings.php',
+    'admin/class-ai-product-panel.php',
+    'admin/class-erp-dashboard.php',
+    'admin/class-purchase-importer.php',
+    'admin/class-logistics-export.php',
+];
 
-require_once HIMEDOLL_CORE_PATH . 'ai/class-ai-client.php';
-require_once HIMEDOLL_CORE_PATH . 'ai/class-ai-queue.php';
-require_once HIMEDOLL_CORE_PATH . 'ai/class-ai-product-generator.php';
-require_once HIMEDOLL_CORE_PATH . 'ai/class-ai-logger.php';
-
-require_once HIMEDOLL_CORE_PATH . 'admin/class-product-fields.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-settings.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-setup-wizard.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-marketing-settings.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-growth-settings.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-product-importer.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-operations-dashboard.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-order-export.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-commerce-intelligence.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-system-health.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-retention-dashboard.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-ai-settings.php';
-require_once HIMEDOLL_CORE_PATH . 'admin/class-ai-product-panel.php';
+foreach ($files as $file) {
+    $path = HIMEDOLL_CORE_PATH . $file;
+    if (file_exists($path)) {
+        require_once $path;
+    }
+}
 
 add_action('plugins_loaded', static function (): void {
-    HimeDoll_Core::instance();
-    HimeDoll_Catalog_Filter::instance();
-    HimeDoll_Recent_Products::instance();
-    HimeDoll_Wishlist::instance();
-    HimeDoll_Buy_Now::instance();
-    HimeDoll_Security::instance();
-    HimeDoll_Newsletter::instance();
-    HimeDoll_Restock::instance();
-    HimeDoll_Home_Banners::instance();
-    HimeDoll_Campaigns::instance();
-    HimeDoll_Review_Requests::instance();
-    HimeDoll_Email_Log::instance();
-    HimeDoll_Buying_Guides::instance();
-    HimeDoll_Search_Analytics::instance();
-    HimeDoll_Abandoned_Checkout::instance();
-    HimeDoll_Customer_Segments::instance();
-
-    HimeDoll_AI_Queue::instance();
-    HimeDoll_AI_Product_Generator::instance();
-    HimeDoll_AI_Logger::instance();
+    foreach ([
+        'HimeDoll_Core',
+        'HimeDoll_Catalog_Filter',
+        'HimeDoll_Recent_Products',
+        'HimeDoll_Wishlist',
+        'HimeDoll_Buy_Now',
+        'HimeDoll_Security',
+        'HimeDoll_Newsletter',
+        'HimeDoll_Restock',
+        'HimeDoll_Home_Banners',
+        'HimeDoll_Campaigns',
+        'HimeDoll_Review_Requests',
+        'HimeDoll_Email_Log',
+        'HimeDoll_Buying_Guides',
+        'HimeDoll_Search_Analytics',
+        'HimeDoll_Abandoned_Checkout',
+        'HimeDoll_Customer_Segments',
+        'HimeDoll_AI_Queue',
+        'HimeDoll_AI_Product_Generator',
+        'HimeDoll_AI_Logger',
+        'HimeDoll_Suppliers',
+        'HimeDoll_Purchase_Orders',
+        'HimeDoll_Order_Matcher',
+        'HimeDoll_Logistics',
+        'HimeDoll_Profit',
+    ] as $class) {
+        if (class_exists($class) && method_exists($class, 'instance')) {
+            $class::instance();
+        }
+    }
 
     if (is_admin()) {
-        HimeDoll_Settings::instance();
-        HimeDoll_Setup_Wizard::instance();
-        HimeDoll_Marketing_Settings::instance();
-        HimeDoll_Growth_Settings::instance();
-        HimeDoll_Product_Importer::instance();
-        HimeDoll_Operations_Dashboard::instance();
-        HimeDoll_Order_Export::instance();
-        HimeDoll_Commerce_Intelligence::instance();
-        HimeDoll_System_Health::instance();
-        HimeDoll_Retention_Dashboard::instance();
-        HimeDoll_AI_Settings::instance();
-        HimeDoll_AI_Product_Panel::instance();
+        foreach ([
+            'HimeDoll_Settings',
+            'HimeDoll_Setup_Wizard',
+            'HimeDoll_Marketing_Settings',
+            'HimeDoll_Growth_Settings',
+            'HimeDoll_Product_Importer',
+            'HimeDoll_Operations_Dashboard',
+            'HimeDoll_Order_Export',
+            'HimeDoll_Commerce_Intelligence',
+            'HimeDoll_System_Health',
+            'HimeDoll_Retention_Dashboard',
+            'HimeDoll_AI_Settings',
+            'HimeDoll_AI_Product_Panel',
+            'HimeDoll_ERP_Dashboard',
+            'HimeDoll_Purchase_Importer',
+            'HimeDoll_Logistics_Export',
+        ] as $class) {
+            if (class_exists($class) && method_exists($class, 'instance')) {
+                $class::instance();
+            }
+        }
 
-        if (class_exists('WooCommerce')) {
+        if (class_exists('WooCommerce') && class_exists('HimeDoll_Product_Fields')) {
             HimeDoll_Product_Fields::instance();
         }
     }

@@ -1,20 +1,22 @@
-# HimeDoll v3.0.0 AI Operations Platform
+# HimeDoll v4.0.0 ERP / Logistics / Procurement
 
-基于 v2.5.0 的大型增量升级包。
+基于 v3.0.0 的大型增量升级包。
 
 ## 本次新增
-- AI 服务商统一配置
-- OpenAI 兼容接口支持
-- 模型、Base URL、API Key 后台设置
-- 商品 AI 文案生成
-- SEO 标题与描述生成
-- FAQ 草稿生成
-- 图片 ALT 文本生成
-- AI 任务队列
-- 批量商品 AI 处理
-- AI 使用日志
-- AI 请求失败重试
-- Prompt 模板管理
-- 商品编辑页 AI 操作面板
-- 后台 AI 运营中心
-- API Key 不写入 Git
+- 采购单管理
+- 供应商管理
+- 采购备注中的订单号提取
+- 采购单与 WooCommerce 订单匹配
+- 物流公司选择与记忆
+- 批量订单物流分配
+- 深圳骏佳导出
+- 青岛林道导出
+- 上海小包导出
+- 运单号与仓库备注
+- 采购成本记录
+- 订单利润基础计算
+- 物流导出日志
+- ERP 仪表盘
+- CSV 导入采购单
+- CSV 导出采购单
+- 订单详情页 ERP 元数据
