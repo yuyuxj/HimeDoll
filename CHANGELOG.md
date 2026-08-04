@@ -1,13 +1,13 @@
 # Changelog
 
-## 1.2.0
-- Added LINE and contact floating actions
-- Added newsletter signup storage and CSV export
-- Added wishlist AJAX integration
-- Added verified purchase review labels
-- Added product review summary
-- Added promotion banner settings
-- Added FAQ and Organization schema
-- Added thank-you page improvements
-- Added branded WooCommerce email footer
-- Added product inquiry links
+## 1.5.0
+- Added product CSV importer
+- Added automatic brand creation
+- Added remote image sideload
+- Added bulk product metadata updates
+- Added SEO template generator
+- Added operations dashboard
+- Added low-stock and missing-content reports
+- Added order CSV export
+- Added import logs
+- Added example CSV template
