@@ -1,10 +1,13 @@
-# HimeDoll v8.0.0 ERP Commerce
+# HimeDoll v9.0.0 Release
 
-## Upgrade
-1. Back up WordPress files and database.
-2. Replace the HimeDoll theme and HimeDoll Core plugin files.
-3. Visit WordPress Admin once; ERP database tables are created automatically.
-4. Confirm HimeDoll → 库存管理 shows 日本主仓 and 中国采购仓.
-5. Test one supplier, purchase order, order match and inventory adjustment before production use.
+## 新增
+- Body / Head / Accessory 可复用组件库
+- 商品兼容关系和默认组件
+- 前台组合选择器
+- SKU 模板自动生成
+- Product Intelligence 后台总览
 
-Requires WordPress 6.0+, PHP 8.0+ and WooCommerce.
+## 验证
+- 全部 PHP 文件执行 `php -l`
+- 插件和主题版本统一为 9.0.0
+- 不删除 v8 数据表或旧商品字段

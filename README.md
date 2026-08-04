@@ -1,28 +1,24 @@
-# HimeDoll v8.0.0 ERP Commerce
+# HimeDoll v9.0.0 Product Intelligence
 
-日本向け WooCommerce 商城的 AI 商品运营、自动 SEO 与智能推荐版本。
+日本向け WooCommerce 商城、AI运营、ERP 与可组合商品数据系统。
 
-## v8.0 ERP Commerce
+## v9.0 Product Intelligence
 
-- 供应商档案与采购交期管理
-- 采购订单成本拆分：采购价、境内运费、国际运费和清关费
-- 1688/采购备注数字提取并自动匹配 WooCommerce 订单
-- 日本仓、中国仓多仓库数据表
-- 库存流水、手工调整、采购入库、销售出库和退货入库
-- 按商品与仓库汇总当前库存
-- 订单成本、利润和利润率计算
-- 售后/RMA：退款、退货、维修与补件
-- 插件激活及数据库升级自动建表
+- 独立管理 Body、Head、Accessory 组件
+- 组件管理代码、厂家、材质、尺寸、重量、罩杯、肤色、成本与交期
+- 商品绑定默认 Body / Head
+- 设置兼容 Body、兼容 Head 与推荐配件
+- 商品页显示组合选择器
+- SKU 模板及保存时自动生成
+- Product Intelligence 后台总览
+- 保持 v8 ERP、v7 AI SEO、会员、营销和企业接口兼容
 
-## v7.0 主要功能
+## 推荐升级步骤
 
-- AI 完整商品包：标题、短描述、详细描述、SEO、FAQ、ALT、标签一次生成
-- AI 运营中心批量任务，可按缺失内容、最新商品或全部商品入队
-- 商品编辑页与商品列表批量 AI 操作
-- 稳健 JSON 解析，兼容 Markdown 代码块返回
-- Product、Offer、AggregateRating、FAQ、Breadcrumb JSON-LD
-- Canonical、Open Graph、Twitter Card
-- 基于品牌、分类、规格、价格和评分的智能商品推荐
-- 继续兼容 v6 日本商城筛选、ERP、会员、营销和企业接口
+1. 备份数据库和 `wp-content`。
+2. 覆盖主题与 `himedoll-core` 插件文件。
+3. 停用后重新启用 HimeDoll Core，或进入一次后台触发升级。
+4. 在 **Product Intelligence** 中先建立 Body 与 Head。
+5. 编辑一个测试商品，绑定组件并验证前台组合器。
 
-部署前请先备份数据库与 wp-content，并在测试环境验证 AI API 配置。
+正式销售中的价格差异仍建议使用 WooCommerce Variable Product 管理；v9 的组件层用于复用规格、建立兼容关系和统一 SKU。

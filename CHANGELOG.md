@@ -1,5 +1,12 @@
 # Changelog
 
+## 9.0.0
+- Added reusable Body, Head and Accessory component post types.
+- Added product compatibility metadata and storefront configurator.
+- Added SKU templates and safe SKU generation.
+- Added Product Intelligence dashboard and documentation.
+
+
 ## 8.0.0
 - Added multi-warehouse inventory ledger and stock dashboard.
 - Added supplier profiles, purchase landed-cost fields and RMA workflow.
